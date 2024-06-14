@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3>Edit list:</h3>
+                    <h5>{{ todo_list.title|upper }}</h5>
+                </div>
+                <div>
+                    <input value="Add a new item" type="button" class="btn btn-primary"
+                        onclick="location.href='{% url 'item-add' todo_list.id %}'">
+                    <form id="deleteForm" method="POST" action="{% url 'list-delete' todo_list.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="todo_list_id" value="{{ todo_list.id }}">
+                        <button type="button" class="btn btn-danger ml-2" onclick="confirmDelete()">Delete this list</button>
+                    </form>
+                </div>
+            </div>
+            
+            <ul class="list-group">
+                {% for todo in object_list %}
+                <li class="list-group-item">
+                    <div role="button" onclick="location.href='{% url 'item-update' todo_list.id todo.id %}'">
+                        {{ todo.title }} (Due {{ todo.due_date|date:"l, F j" }})
+                    </div>
+                </li>
+                {% empty %}
+                <li class="list-group-item">
+                    <p>There are no to-do items in this list.</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this list?")) {
+            document.getElementById("deleteForm").submit();
+        }
+    }
+</script>
+
+{% endblock %}

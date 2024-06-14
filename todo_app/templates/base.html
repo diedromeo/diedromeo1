@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            padding-top: 60px; /* Adjust for fixed navbar height */
+        }
+
+        .navbar {
+            background-color: #007bff; /* Navbar color */
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+    <title>Django To-do Lists</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'index' %}">Django To-do Lists</a>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        <!-- Default content if not overridden -->
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Optional: Your custom JavaScript or additional scripts -->
+</body>
+
+</html>

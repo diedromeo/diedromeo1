@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Delete To-do Item</h1>
+        <p class="lead">Are you sure you want to delete the item:</p>
+        <h2>{{ object.title }}</h2>
+        <p class="lead">from the list:</p>
+        <h3>{{ todo_list.title }}</h3>
+
+        <hr class="my-4">
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger mr-2">Yes, delete</button>
+                <a href="{% url 'list' todo_list.id %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
